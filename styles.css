@@ -264,6 +264,29 @@ details.reveal .inner{padding:0 1rem 1rem}
 .ov-card h4{margin:.2rem 0;color:var(--teal)}
 .ov-card small{color:var(--muted)}
 
+/* ---------- Sequential gating ---------- */
+.locked-step{
+  position:relative;
+  opacity:.5;
+  filter:grayscale(.5);
+  pointer-events:none;
+  user-select:none;
+}
+.locked-step::before{
+  content:"🔒 Solve the previous task to unlock";
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--muted);
+  background:rgba(255,255,255,.35);
+  border-radius:var(--radius);
+  z-index:2;font-size:.95rem;text-align:center;padding:1rem;
+}
+.modnav button.locked{opacity:.55;cursor:not-allowed}
+.btn.is-disabled{opacity:.5;filter:grayscale(.4)}
+.charcnt{font-weight:700}
+.charcnt.cno{color:var(--bad)}
+.charcnt.cok{color:var(--good)}
+
 @media (max-width:560px){
   .brand span.full{display:none}
   .mod-head h2{font-size:1.25rem}

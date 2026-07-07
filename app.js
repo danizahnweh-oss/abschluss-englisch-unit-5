@@ -1,7 +1,9 @@
 /* ============================================================
    Global Matters – interactive revision
    Handles: navigation, XP, badges, progress, timer,
-   quizzes, drag & drop, gap-fills, word counts, certificate.
+   quizzes, drag & drop, gap-fills, word counts, certificate,
+   and SEQUENTIAL GATING (unlock one task/module after another).
+   Free-text tasks require at least 200 characters.
    Progress is stored in localStorage.
    ============================================================ */
 
@@ -25,6 +27,7 @@ const BADGES = [
 ];
 
 const STORE_KEY = "globalMattersProgress_v1";
+const MIN_CHARS = 200;   // minimum characters for every free-text task
 
 /* ---------- state ---------- */
 let state = loadState();
@@ -41,6 +44,8 @@ function defaultState(){
     points: 0,
     answered: {},          // unique keys of already-scored items
     doneModules: [],       // completed module ids
+    completedSteps: {},    // unlocked/solved task steps  (key -> true)
+    texts: {},             // saved free-text answers (stepKey -> value)
     secondsLeft: 180*60,   // 180 min countdown
     name: ""
   };
@@ -58,28 +63,81 @@ function award(key, pts){
 }
 
 /* ============================================================
-   NAVIGATION
+   NAVIGATION + GATING CORE
    ============================================================ */
 const modules = [...document.querySelectorAll(".module")];
 const modnav  = document.getElementById("modnav");
+
+/* a module is unlocked once the previous one is finished */
+function moduleUnlocked(id){
+  id = +id;
+  if(id <= 1) return true;                 // Start + Module 1 always open
+  return state.doneModules.includes(id - 1);
+}
+
+/* the interactive "steps" of a module (cards + book tasks, in order) */
+function stepEls(modEl){
+  return [...modEl.children].filter(c => c.matches(".card, .booktask"));
+}
+
+/* mark a step solved -> save and unlock the next one */
+function completeStep(step){
+  const key = step.dataset.stepKey;
+  if(!key || state.completedSteps[key]) return;   // already done
+  state.completedSteps[key] = true;
+  save();
+  const modEl = step.closest(".module");
+  refreshModule(modEl);
+  toast("✅ Task solved – next one unlocked");
+}
+
+/* show/lock steps of one module according to progress */
+function refreshModule(modEl){
+  const mod = +modEl.dataset.mod;
+  const moduleDone = state.doneModules.includes(mod);
+  const st = stepEls(modEl);
+  let allPrev = true;                        // all previous steps complete?
+  st.forEach(el=>{
+    const key = el.dataset.stepKey;
+    const unlocked = moduleDone || allPrev;
+    el.classList.toggle("locked-step", !unlocked);
+    if(unlocked && el.dataset.passive === "1") state.completedSteps[key] = true;
+    allPrev = allPrev && !!state.completedSteps[key];
+  });
+  // enable / dim the "Finish module" button
+  const cbtn = modEl.querySelector(".complete-mod");
+  if(cbtn){
+    const done = st.every(el => state.completedSteps[el.dataset.stepKey]);
+    cbtn.classList.toggle("is-disabled", !(done || moduleDone));
+  }
+}
 
 function buildNav(){
   modnav.innerHTML = "";
   MODULES.forEach(m=>{
     const b = document.createElement("button");
-    b.textContent = m.id === 0 ? "🏠 Start" : `${m.id}. ${m.title}`;
+    const open = moduleUnlocked(m.id);
+    b.textContent = m.id === 0 ? "🏠 Start" : `${open ? "" : "🔒 "}${m.id}. ${m.title}`;
     b.dataset.goto = m.id;
     if(state.doneModules.includes(m.id)) b.classList.add("done");
+    if(!open) b.classList.add("locked");
     b.addEventListener("click", ()=> goTo(m.id));
     modnav.appendChild(b);
   });
 }
 
 function goTo(id){
-  modules.forEach(sec=> sec.classList.toggle("active", +sec.dataset.mod === +id));
-  [...modnav.children].forEach(b=> b.classList.toggle("active", +b.dataset.goto === +id));
+  id = +id;
+  if(!moduleUnlocked(id)){
+    toast("🔒 Finish the previous module first to unlock Module " + id);
+    return;
+  }
+  modules.forEach(sec=> sec.classList.toggle("active", +sec.dataset.mod === id));
+  [...modnav.children].forEach(b=> b.classList.toggle("active", +b.dataset.goto === id));
+  const target = modules.find(sec=> +sec.dataset.mod === id);
+  if(target) refreshModule(target);
   window.scrollTo({top:0, behavior:"smooth"});
-  if(+id === 6) renderCertificate();
+  if(id === 6) renderCertificate();
 }
 
 document.querySelectorAll("[data-goto]").forEach(el=>{
@@ -123,40 +181,78 @@ function tick(){
 setInterval(tick, 1000);
 
 /* ============================================================
-   QUIZ (multiple choice, one correct)
+   STEP SETUP – assign keys, add "continue" to reading cards
+   (must run before the quiz / gap / text handlers below)
+   ============================================================ */
+modules.filter(m => +m.dataset.mod >= 1).forEach(modEl=>{
+  stepEls(modEl).forEach((step, i)=>{
+    step.dataset.stepKey = "s" + modEl.dataset.mod + "-" + i;
+
+    // certificate & badge cards: purely passive display -> auto-complete when reached
+    if(step.querySelector(".certificate") || step.querySelector("#badgeGrid")){
+      step.dataset.passive = "1";
+      return;
+    }
+    if(step.querySelector("textarea[data-count]")) return;   // free-text (handled below)
+    if(step.querySelector("[data-q]"))  return;              // quiz
+    if(step.querySelector("[data-dd]")) return;              // drag & drop
+    if(step.querySelector("[data-gap]"))return;              // gap fill
+
+    // pure reading card -> add a "continue" button to acknowledge
+    const row = document.createElement("div");
+    row.className = "btn-row";
+    const b = document.createElement("button");
+    b.className = "btn ghost continue-step";
+    b.textContent = "I've read this ✓";
+    b.addEventListener("click", ()=>{
+      completeStep(step);
+      b.textContent = "Read ✓";
+      b.disabled = true;
+    });
+    row.appendChild(b);
+    step.appendChild(row);
+  });
+});
+
+/* ============================================================
+   QUIZ (multiple choice, retry until correct)
    ============================================================ */
 let qCounter = 0;
 document.querySelectorAll("[data-q]").forEach(q=>{
   const key = "q" + (qCounter++);
   const opts = [...q.querySelectorAll(".opt")];
   const fb   = q.querySelector(".feedback");
+  const okText = fb ? fb.textContent : "";
+  const step = q.closest(".card, .booktask");
+
   opts.forEach((opt,i)=>{
-    // add letter marker
     const mark = document.createElement("span");
     mark.className = "mark";
     mark.textContent = String.fromCharCode(65+i);
     opt.prepend(mark);
 
     opt.addEventListener("click", ()=>{
-      if(q.dataset.locked) return;
-      q.dataset.locked = "1";
+      if(q.classList.contains("solved")) return;          // already correct
       const correct = opt.dataset.correct === "true";
-      opts.forEach(o=>{
-        o.classList.add("locked");
-        if(o.dataset.correct === "true") o.classList.add("correct");
-      });
-      if(!correct) opt.classList.add("wrong");
-      if(fb){
-        fb.classList.add("show", correct ? "ok" : "no");
-        if(!correct){
-          const right = opts.find(o=>o.dataset.correct==="true");
-          const letter = String.fromCharCode(65 + opts.indexOf(right));
-          fb.classList.remove("ok"); fb.classList.add("no");
-          fb.textContent = "Not quite – the correct answer is " + letter + ".";
+
+      if(correct){
+        q.classList.add("solved");
+        opts.forEach(o=>{
+          o.classList.add("locked");
+          if(o.dataset.correct === "true") o.classList.add("correct");
+        });
+        if(fb){ fb.classList.add("show","ok"); fb.classList.remove("no"); fb.textContent = okText; }
+        award(key, 10) && toast("+10 XP ⭐");
+        // step done when every question in it is solved
+        if([...step.querySelectorAll("[data-q]")].every(x=>x.classList.contains("solved"))){
+          completeStep(step);
         }
+      }else{
+        // wrong -> let them try again
+        opt.classList.add("wrong");
+        if(fb){ fb.classList.remove("ok"); fb.classList.add("show","no"); fb.textContent = "Not quite – try again."; }
+        setTimeout(()=> opt.classList.remove("wrong"), 900);
       }
-      if(correct){ award(key, 10) && toast("+10 XP ⭐"); }
-      else { award(key, 0); }
     });
   });
 });
@@ -166,6 +262,7 @@ document.querySelectorAll("[data-q]").forEach(q=>{
    ============================================================ */
 document.querySelectorAll("[data-dd]").forEach((dd,di)=>{
   const key = "dd" + di;
+  const step = dd.closest(".card, .booktask");
   const pool = dd.querySelector(".dd-pool");
   const zones = [...dd.querySelectorAll(".dropzone")];
   let dragged = null;
@@ -183,7 +280,6 @@ document.querySelectorAll("[data-dd]").forEach((dd,di)=>{
       e.preventDefault();
       container.classList.remove("over");
       if(!dragged) return;
-      // a dropzone holds only one token: send existing token back to pool
       if(container.classList.contains("dropzone")){
         const existing = container.querySelector(".token");
         if(existing) pool.appendChild(existing);
@@ -235,6 +331,7 @@ document.querySelectorAll("[data-dd]").forEach((dd,di)=>{
     pill.textContent = `${correct}/${total} correct`;
     if(correct===total){
       award(key, 15) && toast("+15 XP ⭐ perfect match!");
+      completeStep(step);
     }
   });
 });
@@ -244,6 +341,7 @@ document.querySelectorAll("[data-dd]").forEach((dd,di)=>{
    ============================================================ */
 document.querySelectorAll("[data-gap]").forEach((gap,gi)=>{
   const key = "gap" + gi;
+  const step = gap.closest(".card, .booktask");
   const inputs = [...gap.querySelectorAll("input")];
   const btn = gap.querySelector(".check-gap");
   const pill = gap.querySelector(".result-pill");
@@ -261,20 +359,43 @@ document.querySelectorAll("[data-gap]").forEach((gap,gi)=>{
     pill.textContent = `${correct}/${inputs.length} correct`;
     if(correct===inputs.length){
       award(key, 10) && toast("+10 XP ⭐");
+      completeStep(step);
     }
   });
 });
 
 /* ============================================================
-   WORD COUNT for writing tasks
+   FREE TEXT – word/char count + 200-character gate
    ============================================================ */
 document.querySelectorAll("textarea[data-count]").forEach(ta=>{
-  const label = ta.nextElementSibling; // .wordcount
-  const upd = ()=>{
-    const words = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0;
-    label.textContent = words + (words===1 ? " word" : " words");
-  };
+  const label = ta.nextElementSibling;              // .wordcount
+  const step  = ta.closest(".card, .booktask");
+  const isBook = step.classList.contains("booktask");
+  const skey  = step.dataset.stepKey;
+
+  // restore saved text
+  if(skey && state.texts[skey]) ta.value = state.texts[skey];
+
+  function readOk(){
+    const rb = step.querySelector(".read-done");
+    return !isBook || (rb && rb.classList.contains("done"));
+  }
+  function upd(){
+    const raw = ta.value;
+    const t = raw.trim();
+    const words = t ? t.split(/\s+/).length : 0;
+    const chars = raw.length;
+    const enough = chars >= MIN_CHARS;
+    label.innerHTML =
+      `${words} ${words===1?"word":"words"} · ` +
+      `<span class="charcnt ${enough?"cok":"cno"}">${chars}/${MIN_CHARS} characters` +
+      `${enough?" ✓":""}</span>`;
+    if(skey){ state.texts[skey] = raw; save(); }
+    if(enough && readOk()) completeStep(step);
+  }
+  ta._upd = upd;
   ta.addEventListener("input", upd);
+  upd();
 });
 
 /* reward opening a model answer (encourages self-check) */
@@ -288,12 +409,15 @@ document.querySelectorAll("details.reveal").forEach((d,ri)=>{
    BOOK READING TASKS ("I've read the text")
    ============================================================ */
 document.querySelectorAll(".read-done").forEach((btn,ri)=>{
+  const step = btn.closest(".booktask");
   const pill = btn.parentElement.querySelector(".result-pill");
   btn.addEventListener("click", ()=>{
     btn.classList.add("done");
     btn.textContent = "Read ✓";
-    if(pill){ pill.className = "result-pill show ok"; pill.textContent = "Nice – now try the tasks!"; }
+    if(pill){ pill.className = "result-pill show ok"; pill.textContent = "Nice – now write your notes (min. 200 characters)."; }
     award("read"+ri, 5) && toast("+5 XP for reading 📖");
+    const ta = step.querySelector("textarea[data-count]");
+    if(ta && ta._upd) ta._upd();     // re-check the 200-char gate
   });
 });
 
@@ -303,6 +427,15 @@ document.querySelectorAll(".read-done").forEach((btn,ri)=>{
 document.querySelectorAll(".complete-mod").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     const mod = +btn.dataset.mod;
+    const modEl = btn.closest(".module");
+    const st = stepEls(modEl);
+    const allDone = st.every(el => state.completedSteps[el.dataset.stepKey]);
+
+    if(!state.doneModules.includes(mod) && !allDone){
+      toast("🔒 Finish every task in this module first");
+      return;
+    }
+
     if(!state.doneModules.includes(mod)){
       state.doneModules.push(mod);
       award("modbonus"+mod, 20);
@@ -315,7 +448,7 @@ document.querySelectorAll(".complete-mod").forEach(btn=>{
       toast("Module already completed ✓");
     }
     updateHUD();
-    // auto-advance
+    // auto-advance to the (now unlocked) next module
     const next = mod + 1;
     if(next <= 6) setTimeout(()=> goTo(next), 900);
   });
@@ -371,5 +504,6 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
    ============================================================ */
 buildNav();
 updateHUD();
+modules.filter(m => +m.dataset.mod >= 1).forEach(refreshModule);   // apply gating
 goTo(0);
 document.getElementById("timer").textContent = fmt(state.secondsLeft);
