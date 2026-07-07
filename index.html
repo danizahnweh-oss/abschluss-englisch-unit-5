@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Matters – Interactive Revision</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <div class="brand"><span class="num">5</span><span class="full">Global Matters – Revision</span></div>
+  <div class="stats">
+    <span class="chip">⭐ <b><span id="points">0</span></b> XP</span>
+    <span class="chip">🏅 <b><span id="badgeCount">0</span>/6</b></span>
+    <span class="chip">⏱️ <b><span id="timer">180:00</span></b></span>
+    <span class="chip" id="resetBtn" title="Fortschritt löschen">↺ Reset</span>
+  </div>
+</header>
+<div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<div class="layout">
+
+  <!-- module navigation -->
+  <nav class="modnav" id="modnav"></nav>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 0 – START -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="0">
+    <div class="hero">
+      <h2>🌍 Global Matters</h2>
+      <p>Welcome to your interactive end-of-year revision for Unit 5. Work through six modules on globalisation, trade, the environment and English as a world language. Everything is self-checking – answer, get instant feedback, collect XP and badges.</p>
+      <ul>
+        <li>📕 Keep your <b>textbook (Unit 5)</b> ready – each module starts with a reading task and tells you which pages to read.</li>
+        <li>⏱️ Planned time: about <b>180 minutes</b> (≈ 25–30 min per module).</li>
+        <li>✅ Every task gives you feedback – no teacher needed to check.</li>
+        <li>🏅 Finish all modules to earn your certificate.</li>
+      </ul>
+      <div class="btn-row"><button class="btn orange" data-goto="1">Start Module 1 →</button></div>
+    </div>
+
+    <div class="card">
+      <h3>How to work with this site</h3>
+      <ul class="clean">
+        <li><b>Read</b> the short summaries – they refresh the key ideas from your book.</li>
+        <li><b>Answer</b> the quizzes, drag-&-drop and gap-fills. Click an answer to see if it's right.</li>
+        <li><b>Write</b> the longer tasks in the box, then open the <em>model answer / checklist</em> to compare.</li>
+        <li>Click <b>“Finish module”</b> at the bottom to save your progress and unlock the badge.</li>
+      </ul>
+      <p class="source">Tip: Your progress is saved in this browser. Use the same computer to continue later.</p>
+    </div>
+
+    <div class="card">
+      <h3>Your learning path</h3>
+      <div class="overview" id="overview"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 1 – THE BIG PICTURE -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="1">
+    <div class="mod-head">
+      <div class="kicker">Module 1 · Spot on facts</div>
+      <h2>The big picture: globalisation &amp; English</h2>
+      <p>How the world became connected – and how English became its lingua franca.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="booktask">
+      <h3>📖 Read in your book first</h3>
+      <p><span class="pageref">📕 Book pp. 116–117</span> Read the texts <em>“Why globalisation?”</em>, <em>“Globalisation in today's world”</em>, <em>“Why English?”</em> and <em>“English in today's world”</em> before you answer.</p>
+      <div class="readgoal">
+        <b>While you read, note down:</b>
+        <ul class="clean">
+          <li>the four phases of globalisation and one key feature of each;</li>
+          <li>two reasons why English became a global language;</li>
+          <li>one chance and one challenge of English today.</li>
+        </ul>
+      </div>
+      <textarea data-count placeholder="Your reading notes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <div class="btn-row"><button class="btn orange read-done">✓ I've read the text</button><span class="result-pill"></span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Recap</span> The four phases of globalisation</h3>
+      <div class="readtext">
+        <p>Trade between distant peoples is ancient (Silk Road merchants, 2nd century BC). But modern globalisation is usually split into four phases:</p>
+        <ul class="clean">
+          <li><b>Globalisation 1.0</b> (mid-19th century → 1914): the Industrial Revolution, steamships and railways hugely expand worldwide trade.</li>
+          <li><b>Globalisation 2.0</b> (after WWII): the USA becomes the dominant power; rapid growth in technology, communication and finance ever more connects the world.</li>
+          <li><b>Globalisation 3.0</b> (around 2000): the internet transforms work and leisure; the middle classes in China and India grow fast, yet the richest 1% take about 60% of income growth.</li>
+          <li><b>Globalisation 4.0</b> (now): a phase of rapid technological, social and economic change – while some commentators argue we are instead entering <em>deglobalisation</em>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Read</span> Why English?</h3>
+      <div class="readtext">
+        <p>Roughly <b>one in four</b> people worldwide speak English, and about 750 million of them do <em>not</em> come from an English-speaking country. English owes its dominance to two things: Britain's colonial expansion (17th–19th centuries), which imposed the language on many countries, and the 20th-century rise of the USA as a political, business and cultural superpower – reinforced by Hollywood films and pop music. Today English is the world's main <b>lingua franca</b> for trade and communication.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Book task</span> Close reading</h3>
+      <p class="read-note">📖 Use the texts on pp. 116–117.</p>
+      <p>In your own words (about 40–60 words): according to the book, <b>who were the winners and losers</b> of Globalisation 3.0? Support your answer with a figure from the text.</p>
+      <textarea data-count placeholder="According to the text…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show sample answer</summary>
+        <div class="inner"><p>The text says the poorest people largely stayed poor, while the middle classes in China and India saw fast income growth. The biggest winners were the richest 1%, who received about 60% of the world's income growth – so globalisation increased inequality.</p></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Quiz</span> Check your facts</h3>
+      <p class="read-note">📖 Answer after reading pp. 116–117.</p>
+      <div class="q" data-q>
+        <div class="stem">1. Which phase is linked to the spread of the <b>internet</b> and fast income growth for the middle classes in China and India?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">Globalisation 1.0</button>
+          <button class="opt" data-correct="false">Globalisation 2.0</button>
+          <button class="opt" data-correct="true">Globalisation 3.0</button>
+          <button class="opt" data-correct="false">Globalisation 4.0</button>
+        </div>
+        <div class="feedback ok">Correct – Globalisation 3.0 started around 2000 with the internet.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. Which two factors best explain the global dominance of English?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">The EU and the United Nations</button>
+          <button class="opt" data-correct="true">British colonial expansion and the 20th-century rise of the USA</button>
+          <button class="opt" data-correct="false">The Silk Road and the Industrial Revolution</button>
+          <button class="opt" data-correct="false">Hollywood and the Roman Empire</button>
+        </div>
+        <div class="feedback ok">Right. Colonial history spread English; US power (incl. film &amp; music) cemented it.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. Roughly what share of the world's population speaks English?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">About one in ten</button>
+          <button class="opt" data-correct="true">About one in four</button>
+          <button class="opt" data-correct="false">About half</button>
+          <button class="opt" data-correct="false">About three in four</button>
+        </div>
+        <div class="feedback ok">Correct – around 1 in 4, most of them non-native speakers.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag drag">Match</span> Phase → key feature</h3>
+      <p>Drag each feature to the matching phase of globalisation.</p>
+      <div class="dd" data-dd>
+        <div class="dd-pool">
+          <div class="token" draggable="true" data-id="a">Industrial Revolution, steamships &amp; railways</div>
+          <div class="token" draggable="true" data-id="b">USA becomes the dominant post-war power</div>
+          <div class="token" draggable="true" data-id="c">The internet transforms work and leisure</div>
+          <div class="token" draggable="true" data-id="d">Rapid tech change – or the start of deglobalisation</div>
+        </div>
+        <div class="dd-targets">
+          <div class="dd-row"><span class="dd-label"><b>1.0</b> (mid-1800s–1914)</span><div class="dropzone" data-accept="a"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>2.0</b> (after WWII)</span><div class="dropzone" data-accept="b"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>3.0</b> (around 2000)</span><div class="dropzone" data-accept="c"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>4.0</b> (today)</span><div class="dropzone" data-accept="d"></div></div>
+        </div>
+        <div class="btn-row"><button class="btn check-dd">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag vocab">Vocabulary</span> Fill the gaps</h3>
+      <div class="gap" data-gap>
+        <p>English is the world's most common <input data-answer="lingua franca"> – a shared language used by speakers of different mother tongues.</p>
+        <p>A simplified, basic form of English used for international communication is often called <input data-answer="Globish">.</p>
+        <p>Local, non-standard varieties of a language are described as <input data-answer="vernacular"> forms.</p>
+        <div class="btn-row"><button class="btn check-gap">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="0">← Back</button>
+      <button class="btn orange complete-mod" data-mod="1">Finish Module 1 ✓</button>
+      <button class="btn" data-goto="2">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 2 – TRADE AND ITS PRICE -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="2">
+    <div class="mod-head">
+      <div class="kicker">Module 2 · Economic &amp; political impact</div>
+      <h2>Global trade and its price</h2>
+      <p>Containers, the Suez Canal – and the debate about deglobalisation.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="booktask">
+      <h3>📖 Read in your book first</h3>
+      <p><span class="pageref">📕 Book pp. 118–119</span> Read <em>“Standardized shipping is on the move”</em>, then <span class="pageref">📕 pp. 120–121</span> <em>“Is globalisation really doomed?”</em></p>
+      <div class="readgoal">
+        <b>While you read, note down:</b>
+        <ul class="clean">
+          <li>why the standardized container was such an important invention;</li>
+          <li>what the Ever Given episode shows about global trade;</li>
+          <li>the difference between <em>reshoring</em>, <em>friend-shoring</em> and <em>strategic autonomy</em>.</li>
+        </ul>
+      </div>
+      <textarea data-count placeholder="Your reading notes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <div class="btn-row"><button class="btn orange read-done">✓ I've read the texts</button><span class="result-pill"></span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Recap</span> The container that runs the world</h3>
+      <div class="readtext">
+        <p>About <b>90%</b> of the world's goods travel by sea, most of them in standardized steel containers. In 1956 the American entrepreneur <b>Malcolm McLean</b> created the standard container. Because containers fit together “like lego blocks”, loading became mechanised, faster and far cheaper. The quantity of goods carried in containers soared from 102 million tons (1980) to about 1.83 billion tons (2017).</p>
+        <p>The system's weakness showed in 2021 when the giant ship <b>Ever Given</b> blocked the <b>Suez Canal</b>, through which about 12% of global shipping passes. The blockage cost an estimated $9.6 billion a day.</p>
+      </div>
+      <p class="source">based on Anna Nagumey, in: The Conversation, 2021</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Read</span> Is globalisation doomed?</h3>
+      <div class="readtext">
+        <p>After the Cold War, many hoped the whole world would move towards liberal democracy and free markets – and that China's WTO membership (2001) would transform it into a Western-style economy. When that didn't happen, disappointment grew. Recent shocks (the pandemic, Russia's invasion of Ukraine) pushed countries towards <b>strategic autonomy</b>, <b>reshoring</b> and <b>friend-shoring</b> – a partial <em>decoupling</em> from global supply chains.</p>
+        <p>The author warns that deglobalisation risks <b>lower productivity</b> and <b>higher prices</b>. His key point: a <b>healthy social contract</b> that protects workers – not protectionism – is the better way to reduce the downsides of globalisation.</p>
+      </div>
+      <p class="source">based on André Sapir, Bruegel website, 2022</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Quiz</span> Comprehension</h3>
+      <p class="read-note">📖 Answer after reading pp. 118–121.</p>
+      <div class="q" data-q>
+        <div class="stem">1. Why was the standardized container so important?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">It made ships lighter and faster only.</button>
+          <button class="opt" data-correct="true">It let goods be stacked and moved mechanically, cutting cost and time.</button>
+          <button class="opt" data-correct="false">It replaced sea transport with rail.</button>
+          <button class="opt" data-correct="false">It reduced the number of goods traded worldwide.</button>
+        </div>
+        <div class="feedback ok">Correct – standardisation made loading cheap, fast and mechanised.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. What does the <b>Ever Given</b> episode illustrate?</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">How vulnerable global supply chains are to a single blockage.</button>
+          <button class="opt" data-correct="false">That containers are no longer used.</button>
+          <button class="opt" data-correct="false">That the Suez Canal is unimportant for trade.</button>
+          <button class="opt" data-correct="false">That sea transport is cheaper than ever.</button>
+        </div>
+        <div class="feedback ok">Right – one stuck ship disrupted a huge share of world trade.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. According to the deglobalisation text, what does the author recommend instead of protectionism?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">Higher tariffs on all imports</button>
+          <button class="opt" data-correct="true">A healthy social contract that protects workers</button>
+          <button class="opt" data-correct="false">Complete decoupling from China</button>
+          <button class="opt" data-correct="false">Ending all international trade agreements</button>
+        </div>
+        <div class="feedback ok">Correct – better social policy, not protectionism, is his solution.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Book task</span> Close reading</h3>
+      <p class="read-note">📖 Use “Is globalisation really doomed?” (pp. 120–121).</p>
+      <p>Find the passage about China and the WTO. In 2–3 sentences: what did Western countries <b>hope</b> would happen when China joined the WTO, and why were they disappointed?</p>
+      <textarea data-count placeholder="Western countries hoped that…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show sample answer</summary>
+        <div class="inner"><p>Western countries hoped that WTO membership would turn China into a Western-style liberal market economy and democracy. Instead, neither happened, which caused great disappointment and later pushed countries towards decoupling and strategic autonomy.</p></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag drag">Match</span> Key term → meaning</h3>
+      <div class="dd" data-dd>
+        <div class="dd-pool">
+          <div class="token" draggable="true" data-id="a">Bringing production back to your own country</div>
+          <div class="token" draggable="true" data-id="b">Trading mainly with politically friendly countries</div>
+          <div class="token" draggable="true" data-id="c">Reducing dependence to act independently</div>
+          <div class="token" draggable="true" data-id="d">The network that moves goods from producer to customer</div>
+        </div>
+        <div class="dd-targets">
+          <div class="dd-row"><span class="dd-label"><b>Reshoring</b></span><div class="dropzone" data-accept="a"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Friend-shoring</b></span><div class="dropzone" data-accept="b"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Strategic autonomy</b></span><div class="dropzone" data-accept="c"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Supply chain</b></span><div class="dropzone" data-accept="d"></div></div>
+        </div>
+        <div class="btn-row"><button class="btn check-dd">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Writing</span> Comment: “Is globalisation doomed?”</h3>
+      <p>Write a short comment (about 120–150 words). State your opinion, give <b>two arguments</b> with examples, and end with a clear conclusion.</p>
+      <textarea data-count placeholder="Write your comment here…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show checklist &amp; sample opening</summary>
+        <div class="inner">
+          <p><b>A good comment should…</b></p>
+          <ul class="checklist">
+            <li>open with a clear thesis (your position)</li>
+            <li>give at least two arguments, each with an example (e.g. Ever Given, reshoring, rising prices)</li>
+            <li>use linking words: <em>first, moreover, however, on the other hand, therefore</em></li>
+            <li>acknowledge a counter-argument</li>
+            <li>end with a short, firm conclusion</li>
+          </ul>
+          <p><b>Sample opening:</b> “Recent crises have made many people question globalisation, but in my view it is being reshaped rather than reversed. First, …”</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="1">← Back</button>
+      <button class="btn orange complete-mod" data-mod="2">Finish Module 2 ✓</button>
+      <button class="btn" data-goto="3">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 3 – A GREENER, FAIRER WORLD -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="3">
+    <div class="mod-head">
+      <div class="kicker">Module 3 · A greener world?</div>
+      <h2>A greener, fairer world</h2>
+      <p>The toxic cost of e-waste – and a new model for the economy.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="booktask">
+      <h3>📖 Read in your book first</h3>
+      <p><span class="pageref">📕 Book pp. 122–123</span> Read <em>“The toxic effects of electronic waste in Accra, Ghana”</em>, then <span class="pageref">📕 pp. 132–133</span> <em>“The ‘Doughnut Economics’ model”</em>.</p>
+      <div class="readgoal">
+        <b>While you read, note down:</b>
+        <ul class="clean">
+          <li>three health or environmental problems caused by the Agbogbloshie dump;</li>
+          <li>one solution mentioned in the article;</li>
+          <li>what the inner ring and the outer ring of the doughnut stand for.</li>
+        </ul>
+      </div>
+      <textarea data-count placeholder="Your reading notes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <div class="btn-row"><button class="btn orange read-done">✓ I've read the texts</button><span class="result-pill"></span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Recap</span> E-waste in Accra, Ghana</h3>
+      <div class="readtext">
+        <p>At the Agbogbloshie dump in Accra, up to 10,000 workers burn and break apart discarded electronics to recover valuable metals such as copper. It is one of the world's largest destinations for used electronic goods. The work brings burns, respiratory problems and chronic illness.</p>
+        <p>Around <b>50 million tons</b> of e-waste are thrown away each year – a figure projected to <b>double by 2050</b> – yet only about <b>20%</b> is recycled appropriately. Much is sent, often illegally, from richer countries to Africa and Asia.</p>
+      </div>
+      <p class="source">based on Peter Yeung, in: Bloomberg, 2019</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Read</span> Doughnut Economics</h3>
+      <div class="readtext">
+        <p>Economist <b>Kate Raworth</b> (2017) suggests replacing the old “growth for ever” model with a doughnut. The <b>inner ring</b> is the <em>social foundation</em> – the basics everyone needs (food, water, health, education, housing, energy, political voice). The <b>outer ring</b> is the <em>ecological ceiling</em> – limits we must not cross (climate change, ocean acidification, biodiversity loss, pollution).</p>
+        <p>The goal is to bring humanity into the “sweet spot” between the two rings: meeting everyone's needs <em>within</em> the planet's limits. Cities such as Amsterdam have adopted the model for public policy.</p>
+      </div>
+      <p class="source">based on Robert Raymond, Shareable website, 2021 · Kate Raworth (2017)</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Book task</span> Close reading</h3>
+      <p class="read-note">📖 Use the e-waste article (pp. 122–123).</p>
+      <p>Find one person quoted in the article. In 2–3 sentences: who are they, and what does their story tell us about <b>why</b> people work at the dump despite the dangers?</p>
+      <textarea data-count placeholder="The article quotes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show what a strong answer includes</summary>
+        <div class="inner"><p>A strong answer names a worker quoted in the text, explains that they moved to Accra because of poverty or lack of jobs at home, and points out that for many the dump is one of the few ways to earn a living – so economic need outweighs the serious health risks.</p></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag drag">Sort</span> Social foundation or ecological ceiling?</h3>
+      <p>Drag each item into the correct ring of the doughnut.</p>
+      <div class="dd" data-dd>
+        <div class="dd-pool">
+          <div class="token" draggable="true" data-id="s1">Education</div>
+          <div class="token" draggable="true" data-id="s2">Health</div>
+          <div class="token" draggable="true" data-id="e1">Climate change</div>
+          <div class="token" draggable="true" data-id="e2">Biodiversity loss</div>
+        </div>
+        <div class="dd-targets">
+          <div class="dd-row"><span class="dd-label"><b>Social foundation</b> (inner ring)</span><div class="dropzone" data-accept="s1,s2"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Ecological ceiling</b> (outer ring)</span><div class="dropzone" data-accept="e1,e2"></div></div>
+        </div>
+        <div class="btn-row"><button class="btn check-dd">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Quiz</span> Comprehension</h3>
+      <p class="read-note">📖 Answer after reading pp. 122–123 and 132–133.</p>
+      <div class="q" data-q>
+        <div class="stem">1. Roughly how much e-waste is thrown away each year, and what is the trend?</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">About 50 million tons – projected to double by 2050</button>
+          <button class="opt" data-correct="false">About 5 million tons – falling steadily</button>
+          <button class="opt" data-correct="false">About 500 million tons – already recycled</button>
+          <button class="opt" data-correct="false">About 1 billion tons – staying stable</button>
+        </div>
+        <div class="feedback ok">Correct – ~50m tons/year, only ~20% recycled properly.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. In Doughnut Economics, the <b>outer ring</b> stands for…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">the basic needs everyone should have</button>
+          <button class="opt" data-correct="true">the ecological limits we must not cross</button>
+          <button class="opt" data-correct="false">the goal of endless GDP growth</button>
+          <button class="opt" data-correct="false">the income of the richest 1%</button>
+        </div>
+        <div class="feedback ok">Right – the ecological ceiling (climate, biodiversity, pollution…).</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. What is Raworth's main criticism of the traditional economic model?</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">Endless growth ignores social needs and planetary limits</button>
+          <button class="opt" data-correct="false">It relies too much on renewable energy</button>
+          <button class="opt" data-correct="false">It gives too much power to poorer countries</button>
+          <button class="opt" data-correct="false">It measures happiness instead of GDP</button>
+        </div>
+        <div class="feedback ok">Correct – she rejects “growth for its own sake”.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Creative task</span> Letter to the editor</h3>
+      <p>Write a letter to the editor (about 120–160 words) voicing your opinion on e-waste dumps. Appeal for change and <b>suggest one concrete solution</b> (e.g. right to repair, better recycling, making devices last longer).</p>
+      <textarea data-count placeholder="Dear Editor, …"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show letter-to-the-editor checklist</summary>
+        <div class="inner">
+          <ul class="checklist">
+            <li>salutation: “Dear Editor,” / “Dear Sir or Madam,”</li>
+            <li>reference the topic/article in the first line</li>
+            <li>state your opinion clearly and emotionally, but stay factual</li>
+            <li>give 1–2 reasons + one concrete solution</li>
+            <li>use persuasive devices: rhetorical questions, direct appeal (“We must…”)</li>
+            <li>close politely: “Yours faithfully, + name”</li>
+          </ul>
+          <p><b>Useful phrases:</b> “I was shocked to read that…”, “It is unacceptable that…”, “We should demand that manufacturers…”, “If we act now, …”.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="2">← Back</button>
+      <button class="btn orange complete-mod" data-mod="3">Finish Module 3 ✓</button>
+      <button class="btn" data-goto="4">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 4 – ENGLISH AROUND THE WORLD -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="4">
+    <div class="mod-head">
+      <div class="kicker">Module 4 · Language &amp; culture</div>
+      <h2>English around the world</h2>
+      <p>World Englishes, the future of English, and language as identity.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="booktask">
+      <h3>📖 Read in your book first</h3>
+      <p><span class="pageref">📕 Book p. 128</span> Read <em>“Can English remain the ‘world's favourite’ language?”</em>, then <span class="pageref">📕 pp. 126–127</span> <em>“Say it in English – Decolonising the mind”</em>.</p>
+      <div class="readgoal">
+        <b>While you read, note down:</b>
+        <ul class="clean">
+          <li>two reasons why English might lose its dominance in the future;</li>
+          <li>two examples of hybrid language forms;</li>
+          <li>how English was treated in colonial Kenya (Ngũgĩ's view).</li>
+        </ul>
+      </div>
+      <textarea data-count placeholder="Your reading notes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <div class="btn-row"><button class="btn orange read-done">✓ I've read the texts</button><span class="result-pill"></span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Recap</span> Can English remain the world's favourite language?</h3>
+      <div class="readtext">
+        <p>About 1.5 billion people speak English, but fewer than 400 million as a first language. Because so many use it as a second or third language, <b>hybrid forms</b> are spreading: Hinglish (Hindi-English), Benglish (Bengali-English), Tanglish (Tamil-English) and, in the US, Spanglish. Meanwhile, real-time translation technology is improving fast, and the rise of China makes Mandarin more attractive. Even so, English is still widely seen as a “passport to success”.</p>
+      </div>
+      <p class="source">based on Robin Lustig, BBC website, 2018</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Read</span> Decolonising the mind – Ngũgĩ wa Thiong'o</h3>
+      <div class="readtext">
+        <p>The Kenyan writer Ngũgĩ wa Thiong'o describes how, in colonial Kenya, English became the measure of intelligence and the key to education and status, while African languages were devalued. Children were punished for speaking their mother tongue at school. For Ngũgĩ, language is a <b>carrier of culture</b>: forcing a foreign language onto people alienates them from their own world. Since 1978 he has written his creative work in Gikuyu.</p>
+      </div>
+      <p class="source">based on Ngũgĩ wa Thiong'o, Decolonising the Mind, 1986</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Book task</span> Close reading</h3>
+      <p class="read-note">📖 Use “Decolonising the mind” (pp. 126–127).</p>
+      <p>Find where Ngũgĩ describes how English was rewarded and African languages punished at school. In your own words (40–60 words): what does this show about the link between <b>language and power</b> in colonial Kenya?</p>
+      <textarea data-count placeholder="This passage shows…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show sample answer</summary>
+        <div class="inner"><p>English was the measure of intelligence and the key to education, prizes and status, while children were punished for speaking their mother tongue. This shows that the coloniser used language as a tool of power: controlling the language meant controlling who could succeed, and it alienated people from their own culture.</p></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag drag">Match</span> Language terms</h3>
+      <div class="dd" data-dd>
+        <div class="dd-pool">
+          <div class="token" draggable="true" data-id="a">A shared language between speakers of different mother tongues</div>
+          <div class="token" draggable="true" data-id="b">A simplified, basic form of English for global use</div>
+          <div class="token" draggable="true" data-id="c">A blend of two languages, e.g. Hindi + English</div>
+          <div class="token" draggable="true" data-id="d">Local, non-standard, dialectal speech</div>
+        </div>
+        <div class="dd-targets">
+          <div class="dd-row"><span class="dd-label"><b>Lingua franca</b></span><div class="dropzone" data-accept="a"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Globish</b></span><div class="dropzone" data-accept="b"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Hybrid (e.g. Hinglish)</b></span><div class="dropzone" data-accept="c"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Vernacular</b></span><div class="dropzone" data-accept="d"></div></div>
+        </div>
+        <div class="btn-row"><button class="btn check-dd">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Quiz</span> Comprehension</h3>
+      <p class="read-note">📖 Answer after reading p. 128 and pp. 126–127.</p>
+      <div class="q" data-q>
+        <div class="stem">1. Why might English lose some of its global dominance in future?</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">Translation technology and the rise of China (Mandarin)</button>
+          <button class="opt" data-correct="false">Because no one learns it at school anymore</button>
+          <button class="opt" data-correct="false">Because it has too few native speakers to survive</button>
+          <button class="opt" data-correct="false">Because hybrids like Spanglish are banned</button>
+        </div>
+        <div class="feedback ok">Correct – better translation tech and China's rise are key challenges.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. For Ngũgĩ wa Thiong'o, language is above all…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">just a neutral tool for communication</button>
+          <button class="opt" data-correct="true">a carrier of culture and identity</button>
+          <button class="opt" data-correct="false">a barrier to all education</button>
+          <button class="opt" data-correct="false">only important for trade</button>
+        </div>
+        <div class="feedback ok">Right – he sees language as inseparable from culture.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. What is “Spanglish” an example of?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">A dying language</button>
+          <button class="opt" data-correct="true">A hybrid form combining English with another language</button>
+          <button class="opt" data-correct="false">A translation app</button>
+          <button class="opt" data-correct="false">A British dialect</button>
+        </div>
+        <div class="feedback ok">Correct – a blend of English and Spanish.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Across cultures</span> Your reflection</h3>
+      <p>In 60–90 words: how is Ngũgĩ's experience of learning a language <b>different</b> from your own experience of learning English? Consider status, choice and identity.</p>
+      <textarea data-count placeholder="In my experience…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show ideas to compare with</summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Ngũgĩ was <b>forced</b> to learn a coloniser's language; his own was punished and devalued.</li>
+            <li>Most learners today <b>choose</b> English as a useful extra skill, not a replacement for their identity.</li>
+            <li>For him, English caused <b>alienation</b>; for many today it opens opportunities without threatening their mother tongue.</li>
+            <li>Good answers name at least one clear difference and link it to <b>identity or power</b>.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="3">← Back</button>
+      <button class="btn orange complete-mod" data-mod="4">Finish Module 4 ✓</button>
+      <button class="btn" data-goto="5">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 5 – EXAM SKILLS -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="5">
+    <div class="mod-head">
+      <div class="kicker">Module 5 · Skills workshop</div>
+      <h2>Exam skills: analysing non-fiction</h2>
+      <p>Text types, stylistic devices and mediation – the tools you need for the exam.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="booktask">
+      <h3>📖 Read in your book first</h3>
+      <p><span class="pageref">📕 Book pp. 136–137</span> Read the <em>Skills workshop 5: Analysing non-fictional texts</em>, including the example text <em>“How do we make the move to electric cars happen? Ask Norway”</em>.</p>
+      <div class="readgoal">
+        <b>While you read, note down:</b>
+        <ul class="clean">
+          <li>the main differences between broadsheet and tabloid newspapers;</li>
+          <li>the steps for analysing a non-fictional text (structure, line of argument, facts &amp; figures);</li>
+          <li>three stylistic devices and their effect on the reader.</li>
+        </ul>
+      </div>
+      <textarea data-count placeholder="Your reading notes…"></textarea>
+      <div class="wordcount">0 words</div>
+      <div class="btn-row"><button class="btn orange read-done">✓ I've read the workshop</button><span class="result-pill"></span></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag read">Recap</span> Broadsheet vs tabloid</h3>
+      <div class="readtext">
+        <ul class="clean">
+          <li><b>Broadsheet</b> (quality) newspapers: clear distinction between news and opinion, objective style, arguments backed by dates, facts, examples and quotes.</li>
+          <li><b>Tabloids</b>: sensationalised headlines, mixing of facts and opinion, vivid descriptions and exaggeration.</li>
+        </ul>
+        <p>When you analyse a non-fictional text, look at: <b>text type</b>, <b>author's intention</b>, <b>register</b>, <b>structure</b> (headline, introduction, body, conclusion), the <b>line of argument</b>, and the use of <b>facts and figures</b>.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Book task</span> Apply it to the Norway text</h3>
+      <p class="read-note">📖 Use “…Ask Norway” (pp. 136–137).</p>
+      <p>Analyse the example text like in the exam. In 60–90 words, comment on: is it more broadsheet or tabloid? Name <b>two stylistic devices</b> the author uses and explain their effect on the reader.</p>
+      <textarea data-count placeholder="The text is best described as… The author uses…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show what to look for</summary>
+        <div class="inner"><p>It reads as a quality/broadsheet-style opinion piece: it argues with facts and figures (dates, percentages, numbers of EVs and charging stations) but in a lively, personal voice. Devices you could name include the rhetorical/opening question that draws the reader in, enumeration of facts to build the argument, humour/irony, and onomatopoeia (e.g. describing the sound an electric car makes). Each device makes the argument more vivid and persuasive.</p></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag drag">Match</span> Stylistic device → what it does</h3>
+      <div class="dd" data-dd>
+        <div class="dd-pool">
+          <div class="token" draggable="true" data-id="a">A question asked for effect, not for an answer</div>
+          <div class="token" draggable="true" data-id="b">Listing several items in a row for emphasis</div>
+          <div class="token" draggable="true" data-id="c">Vivid language that creates a picture in the mind</div>
+          <div class="token" draggable="true" data-id="d">A word that imitates a sound (whoosh, buzz)</div>
+        </div>
+        <div class="dd-targets">
+          <div class="dd-row"><span class="dd-label"><b>Rhetorical question</b></span><div class="dropzone" data-accept="a"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Enumeration</b></span><div class="dropzone" data-accept="b"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Imagery</b></span><div class="dropzone" data-accept="c"></div></div>
+          <div class="dd-row"><span class="dd-label"><b>Onomatopoeia</b></span><div class="dropzone" data-accept="d"></div></div>
+        </div>
+        <div class="btn-row"><button class="btn check-dd">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Quiz</span> Spot the feature</h3>
+      <p class="read-note">📖 Answer after reading pp. 136–137.</p>
+      <div class="q" data-q>
+        <div class="stem">1. “Sensationalised headlines and a mix of facts and opinion” describe a…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">broadsheet newspaper</button>
+          <button class="opt" data-correct="true">tabloid newspaper</button>
+          <button class="opt" data-correct="false">scientific journal</button>
+          <button class="opt" data-correct="false">encyclopaedia entry</button>
+        </div>
+        <div class="feedback ok">Correct – that's the tabloid style.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. “Great electric cars don't growl, they merely whoosh.” Which device is <em>whoosh</em>?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">Rhetorical question</button>
+          <button class="opt" data-correct="false">Enumeration</button>
+          <button class="opt" data-correct="true">Onomatopoeia</button>
+          <button class="opt" data-correct="false">Metaphor</button>
+        </div>
+        <div class="feedback ok">Right – it imitates a sound.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. In a text analysis, “register” means…</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">the level of formality of the language</button>
+          <button class="opt" data-correct="false">the number of paragraphs</button>
+          <button class="opt" data-correct="false">the date of publication</button>
+          <button class="opt" data-correct="false">the author's name</button>
+        </div>
+        <div class="feedback ok">Correct – e.g. formal, neutral or informal/colloquial.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag vocab">Useful phrases</span> Build an analysis sentence</h3>
+      <div class="gap" data-gap>
+        <p>“To start off <input data-answer="with">, the author raises awareness of the problem…”</p>
+        <p>“The writer uses a rhetorical <input data-answer="question"> to get the reader's attention.”</p>
+        <p>“This stresses the need to <input data-answer="act|act now"> and shows possible solutions.”</p>
+        <div class="btn-row"><button class="btn check-gap">Check</button><span class="result-pill"></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag write">Mediation</span> Mini-task</h3>
+      <p>A German friend read that the Suez Canal blockage in 2021 “cost about $9.6 billion a day” and that ~12% of global shipping passes through it. In English, explain to an international classmate in 2–3 sentences <b>why one blocked ship mattered so much</b> for the world economy.</p>
+      <textarea data-count placeholder="Even though it was only one ship…"></textarea>
+      <div class="wordcount">0 words</div>
+      <details class="reveal">
+        <summary>Show a sample mediation</summary>
+        <div class="inner">
+          <p>“Although it was just one ship, the Ever Given blocked the Suez Canal, which carries about 12% of the world's shipping. Because so many goods pass through this narrow route, the blockage held up global supply chains and cost an estimated $9.6 billion every day – showing how dependent the world economy is on a few key trade routes.”</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="4">← Back</button>
+      <button class="btn orange complete-mod" data-mod="5">Finish Module 5 ✓</button>
+      <button class="btn" data-goto="6">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- MODULE 6 – FINISH LINE -->
+  <!-- ============================================================= -->
+  <section class="module" data-mod="6">
+    <div class="mod-head">
+      <div class="kicker">Module 6 · Finish line</div>
+      <h2>🏁 Boss level &amp; certificate</h2>
+      <p>One final mixed quiz across the whole unit – then collect your certificate.</p>
+      <div class="est">⏱️ ≈ 30 min</div>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag quiz">Boss quiz</span> Everything together</h3>
+      <div class="q" data-q>
+        <div class="stem">1. Globalisation 3.0 is mainly driven by…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">steamships and railways</button>
+          <button class="opt" data-correct="true">the internet</button>
+          <button class="opt" data-correct="false">the Silk Road</button>
+          <button class="opt" data-correct="false">the Roman Empire</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">2. Malcolm McLean is known for…</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">the standardized shipping container (1956)</button>
+          <button class="opt" data-correct="false">Doughnut Economics</button>
+          <button class="opt" data-correct="false">writing in Gikuyu</button>
+          <button class="opt" data-correct="false">inventing Globish</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">3. The inner ring of the doughnut is the…</div>
+        <div class="opts">
+          <button class="opt" data-correct="true">social foundation</button>
+          <button class="opt" data-correct="false">ecological ceiling</button>
+          <button class="opt" data-correct="false">GDP growth line</button>
+          <button class="opt" data-correct="false">supply chain</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">4. “Tanglish” and “Spanglish” are examples of…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">translation apps</button>
+          <button class="opt" data-correct="true">hybrid language forms</button>
+          <button class="opt" data-correct="false">broadsheet newspapers</button>
+          <button class="opt" data-correct="false">stylistic devices</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">5. A rhetorical question is used to…</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">get a factual answer from the reader</button>
+          <button class="opt" data-correct="true">create an effect and involve the reader</button>
+          <button class="opt" data-correct="false">list many items</button>
+          <button class="opt" data-correct="false">imitate a sound</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+      <div class="q" data-q>
+        <div class="stem">6. About what share of the world's goods travels by sea?</div>
+        <div class="opts">
+          <button class="opt" data-correct="false">about 30%</button>
+          <button class="opt" data-correct="false">about 50%</button>
+          <button class="opt" data-correct="true">about 90%</button>
+          <button class="opt" data-correct="false">about 10%</button>
+        </div>
+        <div class="feedback ok">Correct.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🏅 Your badges</h3>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="certificate">
+        <div style="font-size:2.4rem">🎓</div>
+        <h2>Certificate of Completion</h2>
+        <p>This certifies that</p>
+        <input class="name-in" id="certName" placeholder="your name" aria-label="your name">
+        <p>has completed the <b>Global Matters</b> revision unit with a score of</p>
+        <div class="score-big"><span id="certScore">0</span> XP</div>
+        <p class="complete-note"><span id="certModules">0</span>/6 modules finished</p>
+        <div class="btn-row" style="justify-content:center">
+          <button class="btn orange" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod-foot">
+      <button class="btn ghost" data-goto="5">← Back</button>
+      <button class="btn orange complete-mod" data-mod="6">Finish Module 6 ✓</button>
+      <span></span>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
