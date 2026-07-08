@@ -286,6 +286,7 @@ details.reveal .inner{padding:0 1rem 1rem}
 .charcnt{font-weight:700}
 .charcnt.cno{color:var(--bad)}
 .charcnt.cok{color:var(--good)}
+.reveal.reveal-locked>summary{opacity:.7;cursor:not-allowed;color:var(--muted)}
 
 @media (max-width:560px){
   .brand span.full{display:none}

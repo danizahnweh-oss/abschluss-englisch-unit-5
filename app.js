@@ -391,6 +391,8 @@ document.querySelectorAll("textarea[data-count]").forEach(ta=>{
       `<span class="charcnt ${enough?"cok":"cno"}">${chars}/${MIN_CHARS} characters` +
       `${enough?" ✓":""}</span>`;
     if(skey){ state.texts[skey] = raw; save(); }
+    const dt = step.querySelector("details.reveal");
+    if(dt && dt._syncLock) dt._syncLock();
     if(enough && readOk()) completeStep(step);
   }
   ta._upd = upd;
@@ -398,11 +400,34 @@ document.querySelectorAll("textarea[data-count]").forEach(ta=>{
   upd();
 });
 
-/* reward opening a model answer (encourages self-check) */
+/* model answers: locked until the student has written >= 200 characters */
 document.querySelectorAll("details.reveal").forEach((d,ri)=>{
+  const card = d.closest(".card, .booktask");
+  const ta = card ? card.querySelector("textarea[data-count]") : null;
+  const summary = d.querySelector("summary");
+  const origLabel = summary ? summary.textContent : "";
+  function locked(){ return ta && ta.value.length < MIN_CHARS; }
+  function syncLock(){
+    if(!summary) return;
+    if(locked()){
+      d.classList.add("reveal-locked");
+      d.open = false;
+      summary.textContent = "🔒 Write at least " + MIN_CHARS + " characters to unlock the sample answer";
+    }else{
+      d.classList.remove("reveal-locked");
+      summary.textContent = origLabel;
+    }
+  }
+  d._syncLock = syncLock;
+  if(summary){
+    summary.addEventListener("click", e=>{
+      if(locked()){ e.preventDefault(); toast("🔒 Write at least " + MIN_CHARS + " characters first"); }
+    });
+  }
   d.addEventListener("toggle", ()=>{
     if(d.open) award("reveal"+ri, 5) && toast("+5 XP for self-checking ✅");
   });
+  syncLock();
 });
 
 /* ============================================================
